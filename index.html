@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <main>
+        <section>
+            <form action="/" method="post" autocomplete="off" class="formulario">
+
+                <fieldset>
+                    <legend>FORMULÁRIO DE CADASTRO</legend>
+
+                    <label for="iname">Nome: </label>
+                    <input type="text" name="name" id="iname" class="validar">
+
+                    <label for="isobrenome">Sobrenome: </label>
+                    <input type="text" name="sobrenome" id="isobrenome" class="validar">
+
+                    <label for="icpf">CPF: </label>
+                    <input type="number" name="cpf" id="icpf" class="validar">
+
+                    <label for="iUsuário">Usuário: </label>
+                    <input type="text" name="usuário" id="isuário" class="validar">
+
+                    <label for="iSenha">Senha: </label>
+                    <input type="password" name="senha" id="isenha" class="validar">
+
+                    <label for="iSenha2">Repetir Senha: </label>
+                    <input type="password" name="senha2" id="iSenha2" class="validar">
+
+                    <div class="container" >
+                        <input type="submit" value="Enviar" id="env">
+                        <input type="reset" value="Limpar" id="res">
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+
