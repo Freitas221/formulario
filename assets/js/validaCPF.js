@@ -14,47 +14,58 @@
 11 - (284 % 11) = 2 (Segundo dígito)
 */
 
+class ValidaCPF {
+    constructor(cpfEnviado) {
+        this._cpfEnviado = cpfEnviado.replace(/\D+/g, '')
+    }
 
-function validaCPF(cpfEnviado) {
-    Object.defineProperty(this, 'cpfEnviado', {
-      enumerable: true,
-      get: function(){ 
-        return cpfEnviado.replace(/\D+/g, '')
-      }
-    })
+    get cpfEnviado(){
+        return this._cpfEnviado
+    }
+ 
+    set cpfEnviado(valor) {
+        this._cpfEnviado = valor
+    }
+
+    isSequencia() {
+        return this._cpfEnviado.charAt(0).repeat(11) === this._cpfEnviado
+    }
+
+    geraNovoCPF() {
+        const cpfParcial = this._cpfEnviado.slice(0, 9)
+
+        const digito1 = validaCPF.geraDigito(cpfParcial)
+        const digito2 = validaCPF.geraDigito(cpfParcial + digito1)
+        this.novoCPF = cpfParcial + digito1 + digito2
+    }
+
+    static geraDigito(cpfParcial) {
+        let total = 0
+        let reverso = cpfParcial.length + 1
+
+        for(let i of cpfParcial) {
+            total += reverso * Number(i)
+            reverso--
+        }
+
+       const digito = 11 - (total % 11)
+       return digito <= 9 ? String(digito) : '0'
+    }
+
+    valida() {
+        if(!this._cpfEnviado) return false
+        if(typeof this._cpfEnviado !== 'string') return false;
+        if(this._cpfEnviado.length !== 11) return false
+        if(this.isSequencia()) return false
+        this.geraNovoCPF()
+
+        return this.novoCPF === this.cpfEnviado;
+    }
 }
 
-validaCPF.prototype.valida = function(){
-    if(typeof this.cpfEnviado === 'undefined') return false
-    if(this.cpfEnviado.length !== 11 ) return false
-    if(this.isSequencia()) return false
+// const validaCP = new validaCPF('704.127.306-77')
 
-    const cpfParcial = this.cpfEnviado.slice(0, 9)
-    const digito1 = this.criaDigito(cpfParcial);
-    const digito2 = this.criaDigito(cpfParcial + digito1);
+// console.log(validaCP.valida());
 
-    const novoCpf = cpfParcial + digito1 + digito2
 
-    return novoCpf === this.cpfEnviado
-}
-
-validaCPF.prototype.criaDigito = function(cpfParcial){
-    const cpfArray = Array.from(cpfParcial)
-    let regressivo = cpfArray.length + 1
-    const total = cpfArray.reduce((ac, val) => {
-        ac += (regressivo * Number(val))
-        regressivo --
-        return ac
-    }, 0)
-
-    const digito = 11 - (total % 11)
-    return digito > 9 ? '0' : String(digito)
-}
-
-validaCPF.prototype.isSequencia = function(){
-    const sequencia =  this.cpfEnviado[0].repeat(this.cpfEnviado.length) 
-    return sequencia === this.cpfEnviado
-}
-
-const cpf = new validaCPF('704.127.306-77')
-console.log(cpf.valida())
+ 
