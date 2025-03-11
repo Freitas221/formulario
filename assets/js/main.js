@@ -21,6 +21,21 @@ class ValidaFormulario {
         }
     }
 
+    passValid() {
+        let valid = true;
+
+        const senha = this.formulario.querySelector('#isenha')
+        const repetirSenha = this.formulario.querySelector('#isenha2')
+
+        if(senha.value !== repetirSenha.value) {
+            this.criaErro(senha, 'Senha e Repetir Senha precisam ser iguais')
+            this.criaErro(repetirSenha, 'Senha e Repetir Senha precisam ser iguais')
+
+            return valid = false
+        }
+        return valid
+    }
+
     isValid() {
         let valid = true;
 
