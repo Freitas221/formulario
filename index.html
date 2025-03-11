@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,19 +18,19 @@
                     <input type="text" name="name" id="iname" class="validar">
 
                     <label for="isobrenome">Sobrenome: </label>
-                    <input type="text" name="sobrenome" id="isobrenome" class="cpf validar">
+                    <input type="text" name="sobrenome" id="isobrenome" class="validar">
 
                     <label for="icpf">CPF: </label>
-                    <input type="number" name="cpf" id="icpf" class="validar">
+                    <input type="string" name="cpf" id="icpf" class="cpf validar" minlength="11">
 
-                    <label for="iUsuário">Usuário: </label>
-                    <input type="text" name="usuário" id="isuário" class="validar">
+                    <label for="iusuario">Usuário: </label>
+                    <input type="text" name="usuario" id="iusuario" class="usuario validar" minlength="3" maxlength="12">
 
-                    <label for="iSenha">Senha: </label>
-                    <input type="password" name="senha" id="isenha" class="validar">
+                    <label for="isenha">Senha: </label>
+                    <input type="password" name="senha" id="isenha" class="validar" minlength="6" maxlength="12">
 
-                    <label for="iSenha2">Repetir Senha: </label>
-                    <input type="password" name="senha2" id="iSenha2" class="validar">
+                    <label for="isenha2">Repetir Senha: </label>
+                    <input type="password" name="senha2" id="isenha2" class="validar" minlength="6" maxlength="12">
 
                     <div class="container" >
                         <input type="submit" value="Enviar" id="env">

@@ -34,8 +34,8 @@ class ValidaCPF {
     geraNovoCPF() {
         const cpfParcial = this._cpfEnviado.slice(0, 9)
 
-        const digito1 = validaCPF.geraDigito(cpfParcial)
-        const digito2 = validaCPF.geraDigito(cpfParcial + digito1)
+        const digito1 = ValidaCPF.geraDigito(cpfParcial)
+        const digito2 = ValidaCPF.geraDigito(cpfParcial + digito1)
         this.novoCPF = cpfParcial + digito1 + digito2
     }
 

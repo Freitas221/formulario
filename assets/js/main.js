@@ -13,6 +13,12 @@ class ValidaFormulario {
     handleSubmit(e) {
         e.preventDefault() /*Previne que o formulário seja enviado*/
         const isValids = this.isValid()
+        const passValid = this.passValid()
+
+        if(isValids && passValid) {
+            alert('Formuário enviado')
+            this.formulario.submit();
+        }
     }
 
     isValid() {
@@ -24,6 +30,7 @@ class ValidaFormulario {
 
         for(let campo of this.formulario.querySelectorAll('.validar')) {
             const label = campo.previousElementSibling.innerHTML;
+
             if(!campo.value) {
                this.criaErro(campo, `*${label} não pode estar em branco`)
                valid = false
@@ -32,14 +39,29 @@ class ValidaFormulario {
             if(campo.classList.contains('cpf')) {
                 if(!this.validaCPF(campo)) valid = false
             }
+
+            if(campo.classList.contains('usuario')) {
+                if(!this.validaUsuario(campo)) valid = false
+            }
         }
+
+        return valid;
     }
 
     validaCPF(campo) {
         const cpf = new ValidaCPF(campo.value)
 
-        if(!cpf.valida()){
+        if(cpf.valida() === false){
             this.criaErro(campo, 'CPF inválido')
+            return false
+        }
+        return true
+    }
+
+    validaUsuario(campo) {
+        const usuario = campo.value
+        if(!usuario.match(/^[a-zA-Z0-9]+$/)) {
+            this.criaErro(campo, 'Usuario precisa conter apenas letras ou numeros')
             return false
         }
         return true
